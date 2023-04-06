@@ -18,15 +18,21 @@ Copyright : (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
 
 License : "Terminajones' GFY License"
 
-Redistribution and modification of the software in both source and binary forms is permitted under the following conditions: 
+Redistribution and modification of the software in both source and binary 
+forms is permitted under the following conditions: 
 
-1. These copyright notice, license, conditions list, and disclaimer must be retained in all copies and derivatives of the software ; 
+	1. These copyright notice, license, conditions list, and disclaimer must 
+	be retained in all copies and derivatives of the software ; 
 
-2. Any modifications made to the source code must be clearly and prominently documented within the redistributed product ; 
+	2. Any modifications made to the source code must be clearly and prominently 
+	documented within the redistributed product ; 
 
-3. The interpretation and application of this license must not prejudice the rights of the copyright holder. 
+	3. The interpretation and application of this license must not prejudice 
+	the rights of the copyright holder. 
 
-DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THE SOFTWARE.
+DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE
+USE OF THE SOFTWARE.
 `,
 
 	THIRD_PARTY_MODIFICATIONS_LIST : [ 
