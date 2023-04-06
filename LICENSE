@@ -1,36 +1,24 @@
 TMarqueur.js et TMarqueur.php are distributed under the following copyright and licence :
 
-Copyright (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
+Copyright : (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com 
 
-License : Terminajones' "GFY" License
+License : "Terminajones' GFY License"
 
-Redistribution and modification of the software in both source and binary forms is permitted under the following conditions:
+Redistribution and modification of the software in both source and binary 
+forms is permitted under the following conditions: 
 
-1. The copyright notice, license, conditions list, and disclaimer must be retained in all copies and derivatives of the software ;
+	1. These copyright notice, license, conditions list, and disclaimer must 
+	be retained in all copies and derivatives of the software ; 
 
-2. Any modifications made to the source code must be clearly and prominently documented within the redistributed product ;
+	2. Any modifications made to the source code must be clearly and prominently 
+	documented within the redistributed product ; 
 
-3. The interpretation and application of this license must not prejudice the rights of the copyright holder and contributors.
+	3. The interpretation and application of this license must not prejudice 
+	the rights of the copyright holder. 
 
-DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, AND THE COPYRIGHT HOLDER AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THE SOFTWARE.
-
-----
-
-TMarqueur.js et TMarqueur.php sont distributés sous le copyright et la licence suivants :
-
-Copyright (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
-
-Licence : Terminajones' "GFY" License
-
-La redistribution et la modification du logiciel sous forme source et binaire sont autorisées dans les conditions suivantes :
-
-1. L'avis de droit d'auteur, la licence, la liste des conditions et la clause de non-responsabilité doivent être conservés dans toutes les copies et tous les dérivés du logiciel ;
-
-2. Toute modification apportée au code source doit être documentée de manière claire et visible dans le produit redistribué ;
-
-3. L'interprétation et l'application de cette licence ne doivent pas porter atteinte aux droits du titulaire du droit d'auteur et des contributeurs.
-
-CLAUSE DE NON-RESPONSABILITÉ : CE LOGICIEL EST FOURNI "TEL QUEL" SANS GARANTIE D'AUCUNE SORTE, ET LE DÉTENTEUR DES DROITS D'AUTEUR ET LES CONTRIBUTEURS NE SERONT PAS RESPONSABLES DES DOMMAGES DÉCOULANTS DE L'UTILISATION DU LOGICIEL.
+DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE
+USE OF THE SOFTWARE.
 
 ----
 EOF
