@@ -1,28 +1,36 @@
-BSD 3-Clause License
+TMarqueur.js et TMarqueur.php are distributed under the following copyright and licence :
 
-Copyright (c) 2023, SuperUserNameMan
+Copyright (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+License : Terminajones' "GFY" License
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+Redistribution and modification of the software in both source and binary forms is permitted under the following conditions:
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+1. The copyright notice, license, conditions list, and disclaimer must be retained in all copies and derivatives of the software ;
 
-3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
+2. Any modifications made to the source code must be clearly and prominently documented within the redistributed product ;
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+3. The interpretation and application of this license must not prejudice the rights of the copyright holder and contributors.
+
+DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, AND THE COPYRIGHT HOLDER AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THE SOFTWARE.
+
+----
+
+TMarqueur.js et TMarqueur.php sont distributés sous le copyright et la licence suivants :
+
+Copyright (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
+
+Licence : Terminajones' "GFY" License
+
+La redistribution et la modification du logiciel sous forme source et binaire sont autorisées dans les conditions suivantes :
+
+1. L'avis de droit d'auteur, la licence, la liste des conditions et la clause de non-responsabilité doivent être conservés dans toutes les copies et tous les dérivés du logiciel ;
+
+2. Toute modification apportée au code source doit être documentée de manière claire et visible dans le produit redistribué ;
+
+3. L'interprétation et l'application de cette licence ne doivent pas porter atteinte aux droits du titulaire du droit d'auteur et des contributeurs.
+
+CLAUSE DE NON-RESPONSABILITÉ : CE LOGICIEL EST FOURNI "TEL QUEL" SANS GARANTIE D'AUCUNE SORTE, ET LE DÉTENTEUR DES DROITS D'AUTEUR ET LES CONTRIBUTEURS NE SERONT PAS RESPONSABLES DES DOMMAGES DÉCOULANTS DE L'UTILISATION DU LOGICIEL.
+
+----
+EOF
