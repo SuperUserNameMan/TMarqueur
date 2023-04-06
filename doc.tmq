@@ -1,0 +1,1169 @@
+
+			###############################
+			## %%    __TMarqueur__    %% ##
+			###############################
+
+
+== What is TMarqueur ?
+======================
+
+||TMarqueur|| is a lightweight yet rich markup language inspired by ||Markdown||
+ and ||ASCIIdoc|| and etc.
+
+You can use them to add formating elements to your raw-text documents.
+
+These raw-text documents remain relatively easy and clear to read, and they can 
+be converted to HTML to be displayed in a web browser or in a viewer application.
+
+
+== Why TMarqueur ?
+==================
+
+||Markdown|| is great, but I never understood why ``*`` and ``_`` do the same 
+thing, and why doubling them do something different once converted to HTML ...
+
+Surrounding text using ``_underscores_`` looks like underlining it, so why should
+ it be interpreted as ``_italic_`` and ``__bold__``\ ?
+
+The idea that led to ||TMarqueur|| is that the basic formating elements should 
+mean what they look like to mean.
+
+For instance : ``__underscore__`` should mean __underlined__.
+
+From there, I extended the formating elements as much as I could to make it as 
+rich as possible.
+
+
+== How does it differ from ||Markdown|| ?
+=========================================
+
+> The formatting elements are more numerous, and try to be more consistent in 
+regard to their appearance in raw-text and HTML once rendered.
+
+> Basic formatting elements must be doubled ``**like that**``, and block 
+elements must be __at least__ quadrupled `````` like that``.
+
+> Indented text is not implicitely interpreted as a code block. 
+If you want a code block, you must be explicit and put your code sample
+inside a code block (equivalent to ||Markdown||'s fenced code block).
+
+> Titles (headings) are formated using different markers :
+	L> ``##`` for ``<h1>``
+	L> ``==`` for ``<h2>``
+	L> ``++`` for ``<h3>``
+	L> ``--`` for ``<h4>``
+
+> Indented titles will be converted to centered title in HTML.
+
+> Titles can be multiline, and can be surrounded in different decorative manners
+ in raw-text mode :
+
+```` TMarqueur / Example of an artistic title : `````` 
+
+## the simplest <h1> title 
+
+        #######################
+         ## Artistic raw-text ##
+          ## multiline title   ##
+           ##   that will be    ##
+            ##   converted to    ##
+             ## a centered <h1>   ##
+              #######################
+
+```````````````````````````````````````````````````````
+
+> Instead of ||Markdown||'s heading ID, ||TMarqueur|| uses anchors which can be 
+defined anywhere inside the document.
+
+	-> Example : ``((page-top))`` will be converted to :
+		- ``<a id="page-top" name="page-top"></a>``.
+
+	[i] Note that by default, ||TMarqueur.js|| and ||TMarqueur.php|| will
+	automatically create a "table of content" indexing each title.  
+	And double clicking on any title will scroll you back to the summary.
+
+> You can't mix HTML code with ||TMarqueur||. Characters ``<`` and ``>`` are rendered
+to their HTML entities equivalents. If you want to include custom HTML code inside
+your ||TMarqueur|| document, you may use the ''HTML div'' block : 
+
+````````` TMarqueur ````````````````````````
+::::::::::::: class : my-div-class / id : my-div-id :::::::::::::::
+
+<h1>Here is my cutom HTML section</h1>
+
+<p>bla bla <b>bla</b> bla</p>
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+````````````````````````````````````
+
+> Tables must be "drawn" inside a code block, and the title of the bloc must begins
+with the word "table" :
+
+```` TMarqueur / Example of a table : ```````````
+
+	`````````````` table 1 ```````````````
+		here is optional multiline
+		caption text.
+
+		+------+------+------+------+
+		! row1 ! row2 ! row3 ! sum  !
+		+------+------+------+------+
+		| 123  | 456  | 789  ! 1368 !
+		| 456  | 789  | 123  ! 1368 !
+		| 789  | 123  | 456  ! 1368 !
+		+------+------+------+------+
+		! 1368 ! 1368 ! 1368 !      !
+		+------+------+------+------+
+
+		here optional multiline
+		lengend text.
+	`````````````````````````````````````
+
+`````````````````````````````````````````````````
+
+[i] Putting table into a code block allows easy fallback if a renderer implementation 
+does not support table by default, as it will just be rendered in a monospaced and
+preformated text bloc :
+
+`````````````` _table 1 ````````````````````
+		here is optional multiline
+		caption text.
+
+		+------+------+------+------+
+		! row1 ! row2 ! row3 ! sum  !
+		+------+------+------+------+
+		| 123  | 456  | 789  ! 1368 !
+		| 456  | 789  | 123  ! 1368 !
+		| 789  | 123  | 456  ! 1368 !
+		+------+------+------+------+
+		! 1368 ! 1368 ! 1368 !      !
+		+------+------+------+------+
+
+		here optional multiline
+		lengend text.
+````````````````````````````````````````````
+
+
+[i] And if a renderer want to support HTML table, it just has to parse the content 
+of the code block and return the HTML code. By default ``TMarqueur.js`` requires the 
+extension ``TMarqueur.table.js`` to render table in HTML :
+
+`````````````` table 1 `````````````````````
+		here is optional multiline
+		caption text.
+
+		+------+------+------+------+
+		! row1 ! row2 ! row3 ! sum  !
+		+------+------+------+------+
+		| 123  | 456  | 789  ! 1368 !
+		| 456  | 789  | 123  ! 1368 !
+		| 789  | 123  | 456  ! 1368 !
+		+------+------+------+------+
+		! 1368 ! 1368 ! 1368 !      !
+		+------+------+------+------+
+
+		here optional multiline
+		lengend text.
+````````````````````````````````````````````
+
+
+== What TMarqueur stands for ?
+==============================
+
+''Marqueur'' is the french spelling of ''marker''.
+
+
+
+----------------------------------------------------------------------------
+###################
+## Documentation ##
+###################
+
+||TMarqueur|| documents are composed of 5 kind of text containers :
+
+	1. paragraphes ;
+	2. titles ;
+	3. blocks ;
+	4. bracketed elements ;
+	5. lists items ;
+
+Text can contain any character, as well as 2 types of special sequences of characters :
+
+	1. entity sequences :
+		L> emotikons ``:-)`` -> :-) 
+		L> entity codes ``::#9835::`` -> ::#9835::
+		L> special char ``(TM)`` -> (TM)
+
+	2. escape sequences (using the ``\`` character) :
+		L> forced line break : ``\n``
+		L> unbreakable space : ``\ ``
+		L> backslash : ``\\``
+		L> backtick : ``\```
+
+These special sequences are ignored inside code samples and code blocks.
+
+
+== Paragraphes :
+================
+
+Paragraph is the default container for any text found outside of any other container. 
+They are detected automatically.
+
+`````````` TMarqueur ````````````
+
+This is a single line paragraph.
+
+This second paragraph
+is a multiline paragraph.
+
+This is a third paragraph.
+
+`````````````````````````````````
+
+In raw-text you can break your line wherever you want, it will be included in the 
+same paragraph as long as you don't insert an empty line between them.
+
+`````````` HTML ````````````
+
+<p>This is a single line paragraph.</p>
+
+<p>And here is a
+multiline paragraph.</p>
+
+<p>This is a third paragraph.</p>
+
+`````````````````````````````````
+
+If you want to force a line break inside a paragraph, just use this escape sequence : ``\n``.
+
+`````````` TMarqueur ````````````
+I want to force a line break \n 
+inside my pragraph when it is 
+rendered to HTML.
+````````````````````````````````
+
+`````````` HTML ````````````
+<p>I want to force a line break<br>
+inside my pragraph when it is 
+rendered to HTML.</p>
+````````````````````````````````
+
+++ Paragraph alignements :
+++++++++++++++++++++++++++
+
+||TMarqueur|| supports 4 text alignements for you paragraphes :
+
+1. left alignement ;
+2. left alignement with an unbreakable space as first character ;
+3. justified alignement with an unbreakable space as first character ;
+4. centered alignement ;
+
+[!] right alignement is not supported.
+
+
+-- 1. ""Left aligned Paragraph""
+-------------------------------------
+
+The first line of your paragraph does not start with a space :
+
+`````````````` TMarqueur / left aligned paragraph ````````````
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+
+`````````````````````````````````````````````````````````````````
+
+It will be rendered like that :
+
+-------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+-------
+
+-- 2. ""Left aligned Paragraph with a space""
+-------------------------------------------
+
+The first line of your paragraph starts with a single space :
+
+`````````````` TMarqueur / left aligned with 1 space ````````````
+
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+
+`````````````````````````````````````````````````````````````````
+
+It will be rendered like that :
+
+-------
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+-------
+
+-- 3. ""Justified Paragraph""
+---------------------------------------------------
+
+The first line of your paragraph starts with 2 spaces :
+
+`````````````` TMarqueur / justified paragraph ````````````
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+
+`````````````````````````````````````````````````````````````````
+
+It will be rendered like that :
+
+-------
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod  tempor  incididunt ut  labore et dolore magna aliqua. Ut 
+enim ad minim veniam,  quis  nostrud exercitation ullamco laboris 
+nisi ut  aliquip ex ea  commodo consequat.  Duis aute irure dolor 
+in reprehenderit in voluptate velit  esse cillum dolore eu fugiat 
+nulla pariatur.  Excepteur  sint occaecat cupidatat non proident, 
+send  me  all your money,  thank you,  sunt in culpa  qui officia 
+deserunt mollit anim id est laborum.
+-------
+
+
+-- 4. ""Centered Paragraph""
+---------------------------------------------------
+
+The first line of your paragraph starts with 3 or more spaces :
+
+`````````````` TMarqueur / centered paragraph ````````````
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+send me all your money, thank you, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+
+`````````````````````````````````````````````````````````````````
+
+It will be rendered like that :
+
+-------
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+   enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+   in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+   nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+    send me all your money, thank you, sunt in culpa qui officia 
+               deserunt mollit anim id est laborum.
+-------
+
+
+
+== Text formating :
+===================
+
+The text inside most container can be formated using surrounding markers as shown into
+the table below :
+
+`````````````````````` table 1 `````````
+					basic formating
+
+! formating                  ! TMarqueur           ! to HTML                        ! nested\nformatting
+
+| bold **formating**         | ``**bold**``        | ``<b>bold</b>``                | [yes]
+| 
+| underlining __formating__  | ``__underlined__``  | ``<u>underlined</u>``          | [yes]
+| 
+| italic ''formating''       | ``''italic''``      | ``<i>italic</i>``              | [yes]
+| 
+| strike ~~formating~~       | ``~~strike~~``      | ``<s>strike</s>``              | [yes]
+|            
+| quote ""formating""        | ``""quote""``       | ``<q>quote</q>``               | [yes]
+| 
+| superscript ^^formating^^  | ``^^superscript^^`` | ``<sup>superscript</sup>``     | [yes]
+| 
+| subscript ,,formating,,    | ``,,subscript,,``   | ``<sub>subscript</sub>``       | [yes]
+| 
+| marked %%formating%%       | ``%%subscript%%``   | ``<mark>subscript</mark>``     | [yes]
+|
+| emphasized ||formating||   | ``||emphasised||``  | ``<em>emphasised</em>``        | [yes]
+|
+| important $$formating$$    | ``$$important$$``   | ``<strong>important</strong>`` | [yes]
+|
+| monospaced ``formating``   | ````monospaced````  | ``<samp>monospaced</samp>``    | [no]
+|
+| unformated //formating//   | ``//unformated//``  | ``<span>unformated</span>``    | [no]
+
+````````````````````````````````````````
+
+[i] if you repeat a formating marker more than twice, the extra markers will be 
+rendered as text :
+
+	-> Examples :
+		- ``**bold**`` is rendered as **bold** ; 
+		- ``***bold***`` is rendered as ***bold*** ;
+		- ``******bold****`` is rendered as ******bold**** ;
+
+	[!] starting and ending markers must at least contain 1 space :
+		- ``$$ $$`` is rendered as $$ $$ ;
+		- ``$$ $ $$`` is rendered as $$ $ $$ ;  
+		- ``$$$ $$$`` is rendered as $$$ $$$ ;
+		- ``$$ $ $ $$`` is rendered as $$ $ $ $$ ;  
+		- ``$$$$$$ $$$$`` is rendered as $$$$$$ $$$$ ;
+
+	[!] you may also use an escape sequence for better control :
+		- ``$$ \$ $$`` is rendered as $$ \$ $$ ; 
+		- ``$$ \$\$ $$`` is rendered as $$ \$\$ $$ ;
+		- ``$$ \$\$\$\$\$\$ $$`` is rendered as $$ \$\$\$\$\$\$ $$ ;
+
+	[!] or souround the content with unformated markers ``//`` :
+		- ``$$// $ //$$`` is rendered as $$//$//$$ ; 
+		- ``$$// $$ //$$`` is rendered as $$//$$//$$ ;
+		- ``$$// $$$$$$ //$$`` is rendered as $$//$$$$$$//$$ ;
+
+
+[i] it is possible to nest different formating together.
+	[!] however, some containers (like unformated and monospaced markers and 
+	code-blocks) will ignore inner text formating.
+
+[i] unclosed markers are automatically closed at the end of a container.
+
+
+== Title formating markers :
+============================
+
+||TMarqueur|| supports 4 level of title :
+
+1. ``## titles`` will be converted to ``<h1>`` ;
+2. ``== titles`` will be converted to ``<h2>`` ;
+3. ``++ titles`` will be converted to ``<h3>`` ;
+4. ``-- titles`` will be converted to ``<h4>`` ;
+
+A title is detected when the trimmed line starts with at least a pair of title markers.
+
+This means you can indent your titles as you wish.
+
+````````` TMarqueur ````````````
+## Is a valid title
+
+      ## Is also a valid title
+
+######### this is also a valid title 
+
+     ######### this is also a valid title 
+
+````````````````````````````````
+
+When a title is indented, it is rendered in HTML as with a centered attribute :
+	-> ``<h1 data-centered=true>...</h1>``.	
+	[i] it will be up to your CSS to center them.
+
+Titles' ending markers are optional.
+
+````````` TMarqueur ````````````
+## Is a valid title ##
+
+      #### Is also a valid title ####
+````````````````````````````````
+
+
+||TMarqueur|| also supports multiline titles :
+
+```````` TMarqueur `````````````
+## This is multiline 
+## title 
+
+## This is an other multiline title that you can
+ ## extend as much as you want as long as
+   ## each line are touching
+  ## each others.
+
+``````````````````````````````````````
+
+	[i] you can indent each line of a multiline title as you wish.
+
+	[!] but keep in mind that it's the first line that determines if
+	the title has to be rendered centered or not.
+
+
+||TMarqueur|| also supports "boxed" and "underlined" titles :
+
+`````````` TMarqueur ````````````````````
+
+#####################
+## this is a boxed ##
+## multiline title ##
+#####################
+
+## this is a single line underlined title :
+###########################################
+
+###########################
+## this one is overlined ##
+
+`````````````````````````````````````````````
+
+And if you feel like an ASCII-artist, feel free to decorate
+your titles according to your inspiration :
+
+
+`````````` TMarqueur ````````````````````````
+
+        #################
+      ##                 ##
+     ##   BUBLE           ##
+     ##       TITLE       ##
+     ##           STYLE   ##
+      ##                 ##
+        #################
+
+``````````````````````````````````````````
+
+Just keep in mind that your strange decoration might not be rendered in HTML :-)
+
+	[i] it will depend on the implementation
+
+
+
+== Horizontal rules :
+=====================
+
+If a title contains no text, it is rendered as an horizontal rule ``<hr>``.
+
+You thus have 4 type of horizontal rules available :
+
+* ``######`` rendered to ``<hr class="hr_type_1">`` :
+
+#########
+
+* ``======`` rendered to ``<hr class="hr_type_2">`` :
+
+=========
+
+* ``++++++`` rendered to ``<hr class="hr_type_3">`` :
+
++++++++++
+
+* ``-------`` rendered to ``<hr class="hr_type_4">`` :
+
+---------
+
+
+== Block containers :
+=====================
+
+Block containers are used to embed text content that will be rendered differently.
+
+Block containers can be extended using "plugins". In ||TMarqueur|| block extensions are called ""variants"".
+
+A block is composed of 3 parts :
+1. an opening line (which may be used as a header with attributes)
+2. a content
+3. a closing line 
+
+The 4 firsts characters of the opening and closing lines must be the block's marker character.
+
+Unlike titles' markers, you can't ident blocks' opening and closing lines.
+
+Blocks can't be nested.
+
+By default, ||TMarqueur|| supports 6 kind of block container :
+
+	1. Formatable quote block ;
+	2. Raw-text quote block ;
+	3. Textarea block ;
+	4. DIV block ;
+	5. HTML DIV block ;
+	6. Code block ;
+
+++++++++++++++++++++++++++++++++++++
+++ 1. ""formatable quote blocks"" ++
+++++++++++++++++++++++++++++++++++++
+
+They are used to quote a blob of text that contain ||TMarqueur|| markers, 
+and are rendered as ``<blockquote>`` :
+
+
+`````````````` TMarqueur / formatable quote block ``````````````
+
+""""""""""""""" title / cite / date / source """"""""""""
+ You can ``indent`` and **format** the content as you wish.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+````````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+""""""""""""""" title / cite / date / source """"""""""""
+ You can ``indent`` and **format** the content as you wish.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+++++++++++++++++++++++++++++++++++
+++ 2. ""raw-text quote blocks"" ++
+++++++++++++++++++++++++++++++++++
+
+
+They are used to quote a blob of raw-text, and are rendered as ``<blockquote>`` :
+
+```````````````` TMarqueur / raw-text quote block ``````````````
+
+'''''''''''''''' title / cite / date / source ''''''''''''
+ You can ``indent`` the content as you wish.
+	Though, ||TMarqueur|| formating will be ignored.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+````````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+'''''''''''''''' title / cite / date / source ''''''''''''
+ You can ``indent`` the content as you wish.
+	Though, ||TMarqueur|| formating will be ignored.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+++++++++++++++++++++++++++++
+++ 3. ""textarea blocks"" ++
+++++++++++++++++++++++++++++
+
+
+They are used to contain any text or code that could be edited by the user.
+
+```````````````` TMarqueur / textarea block ``````````````
+
+<<<<<<<<<<<<<<<<<<< name / title <<<<<<<<<<<<<<<<<<<<<<<
+ You can ``indent`` the content as you wish.
+	Though, ||TMarqueur|| formating will be ignored.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+````````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+<<<<<<<<<<<<<<<<<<< name / title <<<<<<<<<<<<<<<<<<<<<<<
+ You can ``indent`` the content as you wish.
+	Though, ||TMarqueur|| formating will be ignored.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
++++++++++++++++++++++++
+++ 4. ""div blocks"" ++
++++++++++++++++++++++++
+
+
+They are used to make custom containers using CSS and or
+Javascript. The content is interpreted as ||TMarqueur||.
+
+```````````````` TMarqueur / div block ``````````````
+
+;;;;;;;;;;;;;;;;;;;; class / id ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ You can ``indent`` the content as you wish.
+	Though, the preformating will depend on the CSS
+associated.
+
+ ||TMarqueur|| formating will be rendered.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+````````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+;;;;;;;;;;;;;;;;;;;; class / id ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ You can ``indent`` the content as you wish.
+	Though, the preformating will depend on the CSS
+associated.
+
+ ||TMarqueur|| formating will be rendered.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+++++++++++++++++++++++++++++
+++ 5. ""HTML div blocks"" ++
+++++++++++++++++++++++++++++
+
+
+They are used to make custom HTML div. 
+
+```````````````` TMarqueur / HTML div block ``````````````
+
+:::::::::::::::::::: class / id :::::::::::::::::::::::::::
+ You can ``indent`` the content as you wish.
+	Though, the preformating will depend on the CSS
+associated.
+
+ ||TMarqueur|| formating will be ignored, 
+but it can contain <mark>raw HTML code</mark>.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+````````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+:::::::::::::::::::: class / id :::::::::::::::::::::::::::
+ You can ``indent`` the content as you wish.
+	Though, the preformating will depend on the CSS
+associated.
+
+ ||TMarqueur|| formating will be ignored, 
+but it can contain <mark>raw HTML code</mark>.
+
+ [i] : The attributes into the opening line are optional.
+     You'll learn more about it it later. 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+[i] note that by default, raw HTML is disabled. 
+To enable it, you'll have to set ``disable_html_blocks`` :
+
+```````` Javascript / with TMarqueur.js  `````````
+
+TMarqueur.disable_html_blocks = false ;
+
+``````````````````````````````````````````````````
+
+```````` PHP / with TMarqueur.php  `````````
+
+\TMarqueur\CONFIG::$disable_html_blocks = false ;
+
+````````````````````````
+
+
++++++++++++++++++++++++++
+++ 6. ""code blocks""  ++
++++++++++++++++++++++++++
+
+
+They are used to contains preformated code samples.
+
+``````````````` TMarqueur / code block ````````````````````
+
+ ``````````````````` lang / title / source ```````````````````
+ <?php 
+	function foo( bool $bar ) : string
+	{
+		return $bar ? "foo" : "bar" ;
+	}
+
+ `````````````````````````````````````````````````````````````
+
+`````````````````````````````````````````````````````````````
+
+The text above is rendered like that :
+
+``````````````````` lang / title / source ```````````````````
+<?php 
+	function foo( bool $bar ) : string
+	{
+		return $bar ? "foo" : "bar" ;
+	}
+
+`````````````````````````````````````````````````````````````
+
+Indeed, the ``lang`` attribute should be replaced by the programming language name, etc.
+
+[!] Note that you can't nest code-blocks. 
+
+So if your code-block contains a line that begins with 4 or more `` ` ``, 
+it may be wrongfully interpreted as the ending of the code block. 
+
+You should add a space in front of the ambiguous `` `````````` line.
+
+[!] also note that the escape sequences are not supported inside 
+unformatable containers.
+
+
+== Lists :
+=============
+
+List items are detected when a line begins with an indented bullet followed by a space.
+
+````````` TMarqueur / List example `````````````
+
+- this is the __first__ item of my list
+- here is a __second__ item
+
+- here is a new list 
+whose __first__ item 
+is **multiline**.
+- and here is the __second__ item of this second list.
+
+`````````````````````````````````````````````````
+
+The example above will be rendered this way (without the horizontal rules) :
+
+-----------------------
+
+- this is the __first__ item of my list
+- here is a __second__ item
+
+- here is a new list 
+whose __first__ item 
+is **multiline**.
+- and here is the __second__ item of this second list.
+
+-----------------------
+
+++ Bullet, decimal and alphabetical list items
+++++++++++++++++++++++++++++++++++++++++++++++
+
+||TMarqueur|| accepts a rich number of various type of list items.
+
+They are classified in 6 categories :
+
+- [[ bullets list items / #bullet-list-items ]]
+- [[ arrows / #arrow-list-items ]]
+- [[ decimal numbers / #decimal-list-items ]]
+- [[ alphabetical / #alphabetical-list-items ]] 
+- [[ checkbox / #checkbox-list-items ]]
+- [[ misc / #misc-list-items ]]
+
+They can be all mixed together inside the same list.
+
+
+-- ""Bullet list items""  ((bullet-list-items))
+---------------------
+
+- minus bullet item is wrote \n 
+	``- like that``
+* disc bullet item is wrote \n 
+	``* like that``
+@ circle bullet item is wrote \n
+	``@ like that`` 
+# square bullet item is wrote \n
+	``# like that``
+> disclosure-closed bullet item is wrote \n
+	``> like that``
+v disclosure-open bullet item is wrote \n
+	``v like that`` \n
+	``V like that``
+^ triangle bullet item  is wrote \n
+	``^ like that``
+
+
+-- ""Arrow list items""  ((arrow-list-items))
+--------------------
+
+-> thin arrow bullet item is wrote \n
+	``-> like that``
+=> big arrow bullet item is wrote \n
+	``=> like that``
+L> bended arrow bullet item is wrote\n
+	``L> like that``
+
+
+-- ""Decimal list items""  ((decimal-list-items))
+---------------------------
+
+3. decimal ordered item is wrote \n
+	``3. like that``
+4) decimal ordered item is wrote \n
+	``4) like that``
+05. decimal-leading-zero ordered item is wrote\n
+	``05. like that``
+06) decimal-leading-zero ordered item is wrote\n
+	``06) like that``
+
+[i] Note : you can pick any number you want for your items. 
+They don't have to be ordered. However, the final HTML renderer 
+might replace it with a number based on its own counting.
+
+
+-- ""Alphabetical list items""  ((alphabetical-list-items))
+-------------------------------
+
+a. lower-alpha ordered item is wrote \n
+	``a. like that``
+a) lower-alpha ordered item is wrote \n
+	``a) like that``
+A. upper-alpha ordered item is wrote \n
+	``A. like that``
+A) upper-alpha ordered item is wrote \n
+	``A) like that``
+
+[i] only one letter per item is supported for now, 
+because it might generate false positives with actual 
+words.
+
+[i] adding support for roman numbers is also on the %%TODO%% list.
+
+
+-- ""Checkbox list items""  ((checkbox-list-items))
+------------------------
+
+[_] empty-checkbox item is wrote \n
+	``[] like that``\n
+	``[ ] like that``\n
+	``[_] like that``
+[x] crossed-checkbox item is wrote\n
+	``[x] like that``\n
+	``[X] like that``
+[v] checked-checkbox item is wrote\n
+	``[v] like that``\n
+	``[V] like that``
+
+
+-- ""Misc. list items""  ((misc-list-items))
+-------------------------
+
+[F] flag item is wrote\n
+	``[F] like that``
+[f] flag item is wrote\n
+	``[f] like that``
+[i] information item is wrote\n
+	``[i] like that``
+[!] warning item is wrote\n
+	``[!] like that``
+
+
+
+
+++ Nesting lists
+++++++++++++++++++
+
+Lists can be nested without depth restriction :
+
+````````` TMarqueur / Nested list example `````````````
+
+1. first item
+2. second
+	L> first nested item
+	L> second nest item
+3. third item
+	123. with 
+		456. more
+			A. depth
+				* really
+							=> as much as you want
+		-> whatever
+999. final count
+[F] and voila
+
+`````````````````````````````````````````````````
+
+The example above will be rendered this way (without the horizontal rules) :
+
+-----------------------
+
+1. first item
+2. second
+	L> first nested item
+	L> second nest item
+3. third item
+	123. with 
+		456. more
+			A. depth
+				* really
+							=> as much as you want
+		-> whatever
+999. final count
+[F] and voila
+
+-----------------------
+
+[!] it is important to note that the rendered HTML code might not result 
+in actual HTML nested list depending on the implementation.
+
+For instance, and for a matter of simplicity, current implementation 
+of ||TMarqueur.js|| and ||TMarqueur.php|| reproduces the look of an HTML 
+nested list by adding an appropriate identation to each item of a 
+single ``<ul></ul>`` list. 
+
+
+== Links and references 
+========================
+
+++ Abbreviations :
+++++++++++++++++++
+
+* ``{{ abbreviation / definition }}`` 
+
+	[i] the definition will be displayed if you hover the abbreviation 
+	with the mouse.
+
+	> Example : {{ MAMMOTH / Massive Ancient Mammal of Majestic Opulence 
+	and Tremendous Height }}
+
+++ Anchors
+++++++++++
+
+Anchors are used for navigating inside an HTML page.
+
+||TMarqueur|| lets you define anchors alsmot anywhere inside your document.
+
+For instance, if you create a ``((page-top))`` anchor at the begining of your 
+document, you can add links to it using ``[[#page-top]]``.
+
+
+* ``(( anchor-id ))`` : create an anchor ((anchor-id)).
+
+* ``[[ #anchor-id ]]`` : create a link to this [[#anchor-id]]
+
+* ``[[ text / #anchor-id ]]`` : create a named link to [[ your anchor / #anchor-id ]]
+
+
+++ Links
++++++++++
+
+As seen above, you can create links to anchors using :
+	-> ``[[#anchor-id]]`` 
+	-> ``[[ text / #anchor-id ]]``
+
+You can also use these markers to links to external pages :
+
+	-> ``[[ url ]]``
+	-> ``[[ text / url ]]``
+	-> ``[[ text / url / target ]]``
+
+[i] By default, ||TMarqueur.js|| only accepts these types of url :
+
+	- anchors : 
+		-> ``#anchor-id``
+
+	- path to same server documents : 
+		-> ``my_page.html``
+		-> ``/path/page.html``
+		-> ``../path/page.php``
+		-> etc
+
+	- addresses begining with :
+		-> ``http:``
+		-> ``https:``
+		-> ``ftp:``
+		-> ``mailto:``
+
+	[!] other schemes, like ``javascript:`` are not accepted by default.
+
+[i] By default, ||TMarqueur.js|| only accepts these targets :
+		-> ``__self`` (which is default)
+		-> ``__blanck``
+
+
+
+++ Footnotes 
+++++++++++++++
+
+Footnotes[[^footnote-example / Footnotes example ]] are indexed at the bottom of your document.
+
+||TMarqueur|| supports manual footnotes, and automatic footnotes.
+
+-- Automatic footnotes 
+----------------------
+
+Automatic footnotes are defined entirely in the middle of your text. 
+
+They are created like that : ``[[^footnote-id / text ]]``
+
+	[i] ``footnote-id`` could just be a number like that[[^1 / example of the simplest footnote-id ]]
+
+	[i] If you hover the link of an automatic footnote with the mouse, the text will appear.
+
+	[i] If you click on the link of an automatic footnote, the page will scroll to the bottom of the 
+	document where all the footnotes are indexed.
+
+	[i] The Footnotes will display the text of the note, and a link that will let you scroll back to the text.
+
+-- Manual footnotes 
+----------------------
+
+Manual footnotes are defined in two separate parts :
+
+	1. the reference to the footnote : ``[[^footnote-id]]``
+
+		[i] the reference is juste an automated footnote without text.
+
+	2. the footnote itself : ``[[:footnote-id / text ]]``
+
+		[i] the footnote can be defined anywhere inside your raw-text document,
+		but it will be rendered at the bottom of the HTML page, into the "Footnotes" section.
+
+		[i] this can also be used to override the text of an automated footnote :
+
+``````` TMarqueur / Footnote override example ``````````
+
+Here is my text with an automated footnote [[^123 / short note ]].
+
+[[:123 / Here is a longer note that overrides the short note once 
+displayed into the footnote section. ]]
+
+[i] If you hover the footnote reference link, you'll see the initial 
+short note.
+
+[i] But if you click on the footnote reference link, you'll be scrolled
+to the footnote section where the overriding long note will be displayed.
+
+````````````````````````````````````````````````````````
+
+Will be rendered like that :
+
+-------
+
+Here is my text with an automated footnote [[^123 / short note ]].
+
+[[:123 / Here is a longer note that overrides the short note once 
+displayed into the footnote section. ]]
+
+[i] If you hover the footnote reference link, you'll see the initial 
+short note.
+
+[i] But if you click on the footnote reference link, you'll be scrolled
+to the footnote section where the overriding long note will be displayed.
+
+-------
+

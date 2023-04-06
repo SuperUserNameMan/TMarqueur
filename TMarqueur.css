@@ -1,0 +1,57 @@
+body { 	
+	max-width:100%; 
+	font-family: sans-serif ;
+}
+
+mark { background-color:rgba(255,255,0,0.5); }
+
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+details { border-bottom : solid 1px ; }
+
+textarea { font-family:monospace; vertical-align:top; max-width:100%; min-width:100%; }
+
+em { border:1px dotted; padding-left:0.2em; padding-right:0.2em; }
+
+table { table-layout:auto; width:100%; border-collapse: collapse;  }
+table caption { font-weight:bold; }
+tbody td , tbody th {  padding:0.5ch; }
+tbody th { border:1px solid #999; }
+tbody td { border:1px dotted #999; }
+tbody tr:nth-child(even) { background-color: rgba( 240,240,240,0.5 );}		
+table .legend td { font-style:italic; text-align:center; }
+table caption { text-align:center; }
+
+.table-div { width:100%; overflow:scroll; }
+
+hr.hr_type_1 { height:0.2ch ; border: 0.2ch solid ; } 
+hr.hr_type_2 { height:0.1ch ; border: 0.2ch dashed ; }
+hr.hr_type_3 { border-top: 0.3ch dotted; } 
+hr.hr_type_4 { border-top: 0.2ch solid; } 
+
+pre { tab-size:4; }
+textarea { tab-size:4; width:100%; height:10em; }
+
+q { quotes: "«\00a0" "\00a0»" "‘" "’"; border:none; padding: 0 1ch 0 1ch; color:#33f; font-family:serif; font-style:italic; }
+q::before { content: open-quote; position:relative; }
+q::after { content: close-quote; position:relative; }
+
+blockquote { white-space: pre-wrap; overflow-x:scroll; border-left:0.5ch solid #77f; padding:1ch; }
+
+strong { color:red; }
+
+pre { border:1px solid #ddd; background:rgba( 240,240,240,0.5 ); padding:1ch; border-radius:1ch; color:#337;  }
+pre::before {  content: ' [' attr(lang) '] ' attr(title); padding:0.25em;  border:1px solid; background:rgba( 255,255,255,0.75 ); display:block; }
+
+code { white-space: pre; }
+
+pre { overflow:scroll; }
+
+samp { border:1px dotted grey; margin:0.5ch; color:brown; background:rgba( 240,240,240,0.75 ); }
+
+
+h1:not([data-centered]), h2:not([data-centered]), h3:not([data-centered]), h4:not([data-centered]) { border-bottom: 1px dashed #555 ; }
+h1[data-centered], h2[data-centered], h3[data-centered], h4[data-centered] { text-align:center; }
+
+div#id.class { border:5px dotted green; padding:1em;  white-space:pre; background:#7a7; margin:1em; }
