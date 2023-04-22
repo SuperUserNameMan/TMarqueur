@@ -9,7 +9,7 @@
 	It is coded for PHP 8.1.
 */
 const FOR_PHP   = '8.1' ;
-const VERSION   = "0.1.202303251739" ;
+const VERSION   = "0.1.202304221311" ;
 const NAME      = "TMarqueur aka Terminajones' Marqueur" ;
 const COPYRIGHT = 'Copyright 2023 Yoann G.F. FAYOLLE, Terminajones.com' ;
 const LICENSE   = <<<END_OF_LICENSE
@@ -21,19 +21,19 @@ Copyright : (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com
 License : "Terminajones' GFY License"
 
 Redistribution and modification of the software in both source and binary 
-forms is permitted under the following conditions: 
+forms is permitted provided that the following conditions are met:
 
-	1. These copyright notice, license, conditions list, and disclaimer must 
-	be retained in all copies and derivatives of the software ; 
+	1. These original license, copyright notice, and disclaimer must 
+	be retained in all copies and derivatives of the software ;
 
 	2. Any modifications made to the source code must be clearly and prominently 
-	documented within the redistributed product ; 
+	documented within the redistributed product ;
 
-	3. The interpretation and application of this license must not prejudice 
-	the rights of the copyright holder. 
+	3. This license shall not be interpreted in any way that would damage or 
+	negatively interfere with the author's reputation or legal rights ;
 
-DISCLAIMER : THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE
+DISCLAIMER: THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
+AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE 
 USE OF THE SOFTWARE.
 
 END_OF_LICENSE;
@@ -645,7 +645,7 @@ function content_to_html( string $_content , bool|string $_content_formating = t
 						$_content[ $end_ ] != $terminator_
 						|| 
 						( 
-							$_content[ $end_ ] != $terminator_
+							$_content[ $end_ ] == $terminator_
 							&& 
 							count_at( $_content , $end_ ) != 2 
 						) 
