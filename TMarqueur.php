@@ -276,7 +276,12 @@ $brackets_tags = // /!\ only ASCII chr allowed as bracket
 			'params_order'    => [ '§content§' , '!§url§' , '!§target§' ] , 
 			'params_defaults' => [ 
 				'!§url§' => function( array $_params ) : string { return $_params['§content§']; } , 
-				'!§target§' => '_self' ,
+				'!§target§' => function( array $_params ) : string 
+				{
+					$val_ = $_params['!§url§'];
+					while( is_callable( $val_ ) ) $val_ = $val_( $_params );
+					return str_starts_with( $val_ , 'http' ) ? '_blank' : '_self' ; 
+				} ,
 			],
 			'params_validator' => [
 				'!§url§' => '/^(http|https|ftp|mailto):.*$|^#[^ ]*$|^[^: \t]+$/i',

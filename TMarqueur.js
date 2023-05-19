@@ -275,7 +275,12 @@ TMarqueur.brackets_tags =
 				params_order    : [ '§content§' , '!§url§' , '!§target§' ] , 
 				params_defaults : { 
 					'!§url§' : function( _params ) { return _params['§content§']; } , 
-					'!§target§' : '_self' ,
+					'!§target§' : function( _params ) 
+					{ 
+						val_ = _params['!§url§'];
+						while( typeof val_ == 'function' ) val_ = val_( _params );
+						return val_.startsWith('http') && '_blank' || '_self' ; 
+					} ,
 				},
 				params_validator : {
 					'!§url§' : /^(http|https|ftp|mailto):.*$|^#[^ ]*$|^[^:/s]+$/i,
