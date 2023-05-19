@@ -131,6 +131,33 @@ $text_to_html =
 
 	[ '[no]' , '❌&#xFE0E;' ],
 	[ '[yes]' , '✅&#xFE0E;' ],
+
+	[ '[STAR]' , '⭐' ],
+	[ '[star]' , '⭐&#xFE0E;' ],
+
+	[ '[0-STAR]' , '&#x2001;' ],
+	[ '[0-star]' , '&#x2001;' ],
+
+	[ '[0-STARS]' , '&#x2001;' ],
+	[ '[0-stars]' , '&#x2001;' ],
+
+	[ '[1-STAR]' , '⭐' ],
+	[ '[1-star]' , '⭐&#xFE0E;' ],
+
+	[ '[1-STARS]' , '⭐' ],
+	[ '[1-stars]' , '⭐&#xFE0E;' ],
+
+	[ '[2-STARS]' , '⭐⭐' ],
+	[ '[2-stars]' , '⭐&#xFE0E;⭐&#xFE0E;' ],
+
+	[ '[3-STARS]' , '⭐⭐⭐' ],
+	[ '[3-stars]' , '⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;' ],
+
+	[ '[4-STARS]' , '⭐⭐⭐⭐' ],
+	[ '[4-stars]' , '⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;' ],
+
+	[ '[5-STARS]' , '⭐⭐⭐⭐⭐' ],
+	[ '[5-stars]' , '⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;⭐&#xFE0E;' ],
 ];
 
 $escape_seq = 
