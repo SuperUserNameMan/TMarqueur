@@ -9,6 +9,7 @@ a { text-decoration:none; }
 a:hover { text-decoration:underline; }
 
 details { border-bottom : solid 1px ; }
+details summary:hover { cursor:pointer; }
 
 textarea { font-family:monospace; vertical-align:top; max-width:100%; min-width:100%; }
 
@@ -55,3 +56,6 @@ h1:not([data-centered]), h2:not([data-centered]), h3:not([data-centered]), h4:no
 h1[data-centered], h2[data-centered], h3[data-centered], h4[data-centered] { text-align:center; }
 
 div#id.class { border:5px dotted green; padding:1em;  white-space:pre; background:#7a7; margin:1em; }
+
+div.image-div { text-align:center; }
+div.image-div img { max-width:100%; }
