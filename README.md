@@ -12,7 +12,7 @@ be converted to HTML to be displayed in a web browser or in a viewer application
 
 ## What does it looks like ?
 
-You can try real-time javascript demo here : [https://tmarqueur.terminajones.com](https://www.terminajones.com/TMarqueur/)
+You can try real-time javascript demo here : https://www.terminajones.com/TMarqueur/
 
 ## Why TMarqueur ?
 
@@ -60,7 +60,7 @@ your **TMarqueur** document, you may use the _HTML div_ block.
 
 * etc.
 
-See full documentation here : [https://tmarqueur.terminajones.com](https://www.terminajones.com/TMarqueur/)
+See full documentation here : https://www.terminajones.com/TMarqueur/
 
 ## What TMarqueur stands for ?
 
