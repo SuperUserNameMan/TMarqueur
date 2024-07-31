@@ -14,27 +14,7 @@ const NAME      = "TMarqueur aka Terminajones' Marqueur" ;
 const COPYRIGHT = 'Copyright 2023 Yoann G.F. FAYOLLE, Terminajones.com' ;
 const LICENSE   = <<<END_OF_LICENSE
 
-TMarqueur.js is distributed under the following copyright and licence :
-
-Copyright : (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com 
-
-License : "Terminajones' GFY License"
-
-Redistribution and modification of the software in both source and binary 
-forms is permitted provided that the following conditions are met:
-
-	1. These original license, copyright notice, and disclaimer must 
-	be retained in all copies and derivatives of the software ;
-
-	2. Any modifications made to the source code must be clearly and prominently 
-	documented within the redistributed product ;
-
-	3. This license shall not be interpreted in any way that would damage or 
-	negatively interfere with the author's reputation or legal rights ;
-
-DISCLAIMER: THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE 
-USE OF THE SOFTWARE.
+This project is released under the IDGAF LICENSE v1.0 that you can read here : https://github.com/SuperUserNameMan/IDGAF_LICENSE
 
 END_OF_LICENSE;
 
