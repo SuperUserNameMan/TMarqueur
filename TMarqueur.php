@@ -9,9 +9,9 @@
 	It is coded for PHP 8.1.
 */
 const FOR_PHP   = '8.1' ;
-const VERSION   = "0.1.202304221311" ;
+const VERSION   = "0.1.202407311135" ;
 const NAME      = "TMarqueur aka Terminajones' Marqueur" ;
-const COPYRIGHT = 'Copyright 2023 Yoann G.F. FAYOLLE, Terminajones.com' ;
+const COPYRIGHT = 'IDGAF' ;
 const LICENSE   = <<<END_OF_LICENSE
 
 This project is released under the IDGAF LICENSE v1.0 that you can read here : https://github.com/SuperUserNameMan/IDGAF_LICENSE
