@@ -8,30 +8,10 @@
 
 var TMarqueur = // "Et s’il n’en reste qu’un, je serai celui-là !"
 { 
-	VERSION : "0.1.202304221311" ,
+	VERSION : "0.1.202407311135" ,
 	NAME : "TMarqueur aka Terminajones' Marqueur" ,
-	COPYRIGHT : 'Copyright 2023 Yoann G.F. FAYOLLE, Terminajones.com' ,
-	LICENSE : `
-TMarqueur.js is distributed under the following copyright and licence :
-
-Copyright : (c) 2023, Yoann G.F. FAYOLLE , Terminajones.com 
-
-Redistribution and modification of the software in both source and binary 
-forms is permitted provided that the following conditions are met:
-
-	1. These original license, copyright notice, and disclaimer must 
-	be retained in all copies and derivatives of the software ;
-
-	2. Any modifications made to the source code must be clearly and prominently 
-	documented within the redistributed product ;
-
-	3. This license shall not be interpreted in any way that would damage or 
-	negatively interfere with the author's reputation or legal rights ;
-
-DISCLAIMER: THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-AND THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE 
-USE OF THE SOFTWARE.
-`,
+	COPYRIGHT : 'IDGAF' ,
+	LICENSE : "This project is released under the IDGAF LICENSE v1.0 that you can fully admire here : https://github.com/SuperUserNameMan/IDGAF_LICENSE",
 
 	THIRD_PARTY_MODIFICATIONS_LIST : [ 
 	/// XXX if you alter the original source code, summarize your modifications in here, and identify yourself
